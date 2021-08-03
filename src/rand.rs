@@ -385,17 +385,16 @@ mod darwin {
     #[repr(C)]
     struct SecRandomRef([u8; 0]);
 
+    // https://developer.apple.com/documentation/security/ksecrandomdefault
+    // says "This constant is a synonym for NULL."
+    const kSecRandomDefault: *const SecRandomRef = core::ptr::null();
+
     #[link(name = "Security", kind = "framework")]
     extern "C" {
-        static kSecRandomDefault: &'static SecRandomRef;
-
         // For now `rnd` must be `kSecRandomDefault`.
         #[must_use]
-        fn SecRandomCopyBytes(
-            rnd: &'static SecRandomRef,
-            count: c::size_t,
-            bytes: *mut u8,
-        ) -> c::int;
+        fn SecRandomCopyBytes(rnd: *const SecRandomRef, count: c::size_t, bytes: *mut u8)
+            -> c::int;
     }
 }
 
