@@ -117,6 +117,7 @@ const RING_INCLUDES: &[&str] =
       "crypto/limbs/limbs.h",
       "crypto/limbs/limbs.inl",
       "crypto/poly1305/internal.h",
+      "include/ring-core/arm_arch.h",
       "include/GFp/aes.h",
       "include/GFp/arm_arch.h",
       "include/GFp/base.h",
